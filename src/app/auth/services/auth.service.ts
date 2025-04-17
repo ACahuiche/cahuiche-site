@@ -32,6 +32,9 @@ export class AuthService extends BaseContext {
   };
 
   async signUp(user: UserDataAccess) {
+    let errSolution:string = '';
+    let errorMsg:string = '';
+
     try {
       const recaptchaVerifier = new RecaptchaVerifier(this._auth, 'recaptcha-container', {
         size: 'invisible'
@@ -43,28 +46,38 @@ export class AuthService extends BaseContext {
     } catch (error) {
       if (error instanceof Error) {
         const context = this.getContext(error);
-        const errSolution = await this._Gemini.EvaluateError(error.message);
+
+        if(error.message.includes('auth/email-already-in-use')) {
+          errorMsg = 'El correo ingresado ya ha sido registrado';
+          errSolution = 'Es necesario el usuario eliga otro correo ya que el que ingreso ya se registro en el sistema';
+        }
+        else {
+          errorMsg = error.message;
+          errSolution = await this._Gemini.EvaluateError(error.message);
+        }
 
         this.errorLog = {
           timestamp: Timestamp.now(),
           element: context.className,
-          errorMessage: error.message,
+          errorMessage: errorMsg,
           AISolution: errSolution
         }
       }
       else {
         const context = this.getContext();
+        errorMsg = 'Error Desconocido';
+
         this.errorLog = {
           timestamp: Timestamp.now(),
           element: context.className,
-          errorMessage: 'Error desconocido'
+          errorMessage: errorMsg
         }
       }
       this._errorLogService.saveErrorLog(this.errorLog);
       console.log('Error identificado, verificar con el admin el log de erorres');
       return {
         success: false,
-        error: error || 'Error desconocido'
+        error: errorMsg || 'Error desconocido'
       };
     }
   }
