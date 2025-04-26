@@ -16,7 +16,7 @@ export class ErrorLoggerService {
   saveErrorLog(errorLog: ErrorLog) {
     return addDoc(this._errorLogCollection, {
       ...errorLog,
-      userId: this._authState.currentUser?.uid
+      userId: this._authState.currentUser?.uid ?? null
     });
   }
 

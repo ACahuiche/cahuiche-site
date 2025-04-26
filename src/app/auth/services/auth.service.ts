@@ -3,7 +3,8 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  RecaptchaVerifier
+  RecaptchaVerifier,
+  UserCredential
 } from '@angular/fire/auth';
 import { BaseContext } from '../../core/context/base-context';
 import { ErrorLog } from '../../models/error-log.model';
@@ -75,14 +76,14 @@ export class AuthService extends BaseContext {
       }
       this._errorLogService.saveErrorLog(this.errorLog);
       console.log('Error identificado, verificar con el admin el log de erorres');
-      return {
-        success: false,
-        error: errorMsg || 'Error desconocido'
-      };
+      return this.errorLog;
     }
   }
 
-  async signIn(user: UserDataAccess) {
+  async signIn(user: UserDataAccess): Promise<UserCredential | ErrorLog> {
+    let errSolution:string = '';
+    let errorMsg:string = '';
+
     try {
       const recaptchaVerifier = new RecaptchaVerifier(this._auth, 'recaptcha-container', {
         size: 'invisible'
@@ -95,29 +96,36 @@ export class AuthService extends BaseContext {
     } catch (error) {
       if (error instanceof Error) {
         const context = this.getContext(error);
-        const errSolution = await this._Gemini.EvaluateError(error.message);
+
+        if(error.message.includes('auth/invalid-credential')) {
+          errorMsg = 'los datos ingresados son incorrectos';
+          errSolution = 'Es necesario el usuario ingrese el usuario y contraseña correctos';
+        }
+        else {
+          errorMsg = error.message;
+          errSolution = await this._Gemini.EvaluateError(error.message);
+        }
 
         this.errorLog = {
           timestamp: Timestamp.now(),
           element: context.className,
-          errorMessage: error.message,
+          errorMessage: errorMsg,
           AISolution: errSolution
         }
       }
       else {
         const context = this.getContext();
+        errorMsg = 'Error Desconocido';
+
         this.errorLog = {
           timestamp: Timestamp.now(),
           element: context.className,
-          errorMessage: 'Error desconocido'
+          errorMessage: errorMsg
         }
       }
       this._errorLogService.saveErrorLog(this.errorLog);
       console.log('Error identificado, verificar con el admin el log de erorres');
-      return {
-        success: false,
-        error: error || 'Error desconocido'
-      };
+      return {...this.errorLog, isError: true};
     }
   }
 }

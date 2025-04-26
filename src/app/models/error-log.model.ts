@@ -6,4 +6,5 @@ export interface ErrorLog {
   errorMessage: string;
   AISolution?: string;
   userId?: string;
+  isError?: boolean;
 }

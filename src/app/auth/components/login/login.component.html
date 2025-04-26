@@ -1,1 +1,14 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="login-box">
+      <h1>🔐LOGIN</h1>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        
+        <input type="email" id="email" formControlName="email" placeholder="Correo" required />
+  
+        <input type="password" id="password" formControlName="password" placeholder="Password" required />
+  
+        <button type="submit">Ingresa</button>
+      </form>
+    </div>
+    <div id="recaptcha-container"></div>
+  </div>
