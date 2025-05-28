@@ -1,0 +1,10 @@
+<div class="post-detail-container">
+    <h1 class="post-detail-title">{{ infoPost.title }}</h1>
+  
+    <p class="post-detail-body">{{ infoPost.bodyPost }}</p>
+  
+    <p class="post-detail-footer">
+      Publicado el {{ infoPost.publishedDate.toDate() | date: 'dd/MM/yyyy hh:mm a' }} por {{ infoPost.author }}
+    </p>
+  </div>
+  

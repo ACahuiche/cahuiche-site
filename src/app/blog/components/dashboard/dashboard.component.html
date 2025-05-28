@@ -1,2 +1,57 @@
-<p>dashboard works!</p>
-<button (click)="logout()" >Salir</button>
+<div class="dashboard-container">
+  <h1 class="welcome">Dashboard</h1>
+
+  <input class="btn-retro" type="button" value="Nuevo Post" (click)="_router.navigate(['/blog/new-post'])">
+
+  <h2 class="section-title">Posts</h2>
+
+  @if(userPosts.length > 0){
+    <table class="retro-table">
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Articulo</th>
+          <th>Fecha Publicacion</th>
+          <th>Fecha ultima modif.</th>
+          <th>Estado</th>
+          <th colspan="3">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(post of userPosts; track post.id){
+        <tr>
+          <td>{{post.title}}</td>
+          <td>{{post.bodyPost | truncate:20 }}</td>
+          <td>
+            @if(post.publishedDate) {
+              {{post.publishedDate.toDate() | date:'dd/MM/yyyy hh:mm a'}}
+            }
+            @else {
+              Sin fecha registrada
+            }
+          </td>
+          <td>
+            @if(post.lastModifyDate){
+              {{post.lastModifyDate.toDate() | date: 'dd/MM/yyyy hh:mm a'}}
+            }
+            @else {
+              Sin fecha registrada
+            }
+          </td>
+          <td> {{ post.isPublic ? 'Publicado' : 'Borrador' }} </td>
+          <td><a class="btn-link" routerLink="/blog/edit-post/{{post.id}}">Editar</a></td>
+          <td><button class="btn-retro-small" (click)="deletePost(post.id)">Borrar</button></td>
+          <td>
+            @if(post.isPublic) {
+              <button class="btn-retro-small" (click)="goToPublish(post.id)">Ver en el blog</button>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @else {
+    <p class="no-posts">Aun no hay publicaciones</p>
+  }
+</div>

@@ -1,0 +1,66 @@
+.retro-navbar {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #ffffff;
+  border-bottom: 4px dashed #000;
+  padding: 1px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.blogname {
+  font-size: 1em;
+  color: #000;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  padding: 5px 10px;
+}
+
+.blogname:hover {
+  background-color: #eee;
+}
+
+.nav-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.welcome-text {
+  font-size: 0.75em;
+  color: #000000;
+}
+
+.btnRetro {
+  background: #0f0;
+  color: #000;
+  padding: 10px 15px;
+  border: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7em;
+  cursor: pointer;
+  box-shadow: 0 0 5px #0f0;
+  transition: background 0.3s;
+}
+
+.btnRetro:hover {
+  background: #0c0;
+}
+
+.retro-link {
+  font-size: 0.7em;
+  color: #000;
+  text-decoration: none;
+  border: 2px solid #000;
+  padding: 10px 15px;
+  background-color: #fff;
+  box-shadow: 2px 2px 0 #000;
+  transition: background 0.2s;
+}
+
+.retro-link:hover {
+  background-color: #eee;
+}

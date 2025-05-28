@@ -4,7 +4,7 @@ import { toast } from 'ngx-sonner';
 import { Component, inject } from '@angular/core';
 import { isRequired } from '../../../core/utils/forms-validators';
 import { AuthService } from '../../services/auth.service';
-import { UserDataAccess } from '../../../models/user.model';
+import { UserDataCredential, UserDataAccess } from '../../../models/user.model';
 import { Router } from '@angular/router';
 
 
@@ -18,7 +18,7 @@ export default class LoginComponent {
   private _formBuilder = inject(FormBuilder);
   private _router = inject(Router);
   private _auth = inject(AuthService);
-  private user: UserDataAccess = { email : '', password: ''};
+  private user: UserDataCredential = { email : '', password: ''};
 
   form = this._formBuilder.group({
     email: this._formBuilder.control('', Validators.required),

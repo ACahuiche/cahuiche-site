@@ -11,7 +11,8 @@ import { ErrorLog } from '../../models/error-log.model';
 import { Timestamp } from '@angular/fire/firestore';
 import { ErrorSuggestFixService } from '../../core/IA/error-suggest-fix.service';
 import { ErrorLoggerService } from '../../core/error-manager/error-logger.service';
-import { UserDataAccess } from '../../models/user.model';
+import { UserDataAccess, UserDataCredential } from '../../models/user.model';
+import { UserService } from '../../core/services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class AuthService extends BaseContext {
   private _auth = inject(Auth);
   private _Gemini = inject(ErrorSuggestFixService);
   private _errorLogService = inject(ErrorLoggerService);
+  private _userService = inject(UserService);
 
   errorLog: ErrorLog = {
     timestamp: Timestamp.now(),
@@ -43,7 +45,9 @@ export class AuthService extends BaseContext {
 
       await recaptchaVerifier.verify();
 
-      return await createUserWithEmailAndPassword(this._auth, user.email, user.password);
+      const credential = await createUserWithEmailAndPassword(this._auth, user.email, user.password);
+      await this._userService.registerUserData(credential.user.uid, user.name);
+      return credential;
     } catch (error) {
       if (error instanceof Error) {
         const context = this.getContext(error);
@@ -80,7 +84,7 @@ export class AuthService extends BaseContext {
     }
   }
 
-  async signIn(user: UserDataAccess): Promise<UserCredential | ErrorLog> {
+  async signIn(user: UserDataCredential): Promise<UserCredential | ErrorLog> {
     let errSolution:string = '';
     let errorMsg:string = '';
 

@@ -1,0 +1,59 @@
+.post-form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  border: 4px dashed #000;
+  background-color: #fff;
+  box-shadow: 6px 6px 0 #000;
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+}
+
+.retro-input,
+.retro-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8em;
+  box-sizing: border-box;
+}
+
+.retro-textarea {
+  resize: none;
+  height: 150px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btnRetro {
+  background: #0f0;
+  color: #000;
+  padding: 15px 20px;
+  border: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 0 5px #0f0;
+}
+
+.btnRetro:hover {
+  background: #0c0;
+}
+
+
+
+.text-red-400 {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity, 1))
+    /* #f87171 */
+  ;
+  margin-bottom: 15px;
+}

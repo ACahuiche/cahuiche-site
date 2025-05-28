@@ -1,1 +1,17 @@
-<p>post-list works!</p>
+<div class="post-list-container">
+    <input type="text" [(ngModel)]="searchTerm" class="retro-input" placeholder="Buscar por título" />
+  
+    @if(filteredPosts().length > 0){
+      @for(post of filteredPosts(); track post.id){
+        <div class="post-card">
+          <h2 class="post-title">{{ post.title }}</h2>
+          <p class="post-body">{{ post.bodyPost | truncate:200 }}</p>
+          <a class="post-link" routerLink="/blog/article/{{post.id}}">Ver más...</a>
+        </div>
+      }
+    }
+    @else {
+      <p class="no-posts">Aún no hay publicaciones</p>
+    }
+  </div>
+  

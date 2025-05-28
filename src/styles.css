@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, html {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 20px;
+  margin: 0;
+}
+
+.main-title {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 0.9em;
+}

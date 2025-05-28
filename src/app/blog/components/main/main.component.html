@@ -1,0 +1,8 @@
+<h2 class="main-title">Ultimos posts</h2>
+
+@if(_blog.loading()){
+    <p class="loading-text">Cargando...</p>
+}
+@else {
+    <app-post-list [posts]="_blog.getAllPosts()"></app-post-list>
+}

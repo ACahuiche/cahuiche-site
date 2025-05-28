@@ -3,7 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path: '',
-        loadComponent: () => import('./blog/components/post-list/post-list.component')
+        redirectTo: 'blog',
+        pathMatch: 'full'
     },
     {
         path: 'auth',
