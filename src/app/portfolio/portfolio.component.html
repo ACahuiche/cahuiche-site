@@ -1,0 +1,52 @@
+<section id="inicio" class="seccion inicio">
+    <img src="profilepic.png" alt="Foto de perfil de Alberto" class="avatar" />
+    <h1>ALBERTO CAHUICHE</h1>
+    <p>Desarrollador Angular</p>
+    <button (click)="scrollTo('proyectos')">Ver mis proyectos</button>
+</section>
+
+<section id="sobre-mi" class="seccion">
+    <h2>Sobre mí</h2>
+    <p>Soy un desarrollador apasionado por la tecnología, el diseño retro y los videojuegos. Me encanta crear
+        aplicaciones modernas con alma ochentera.</p>
+</section>
+
+<section id="proyectos" class="seccion">
+    <h2>Mis Proyectos</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Blog Retro</h3>
+            <p>Un blog hecho con Angular y Firebase, con estilo de los 80s.</p>
+            <a routerLink="/blog" target="_blank">Ver demo</a>
+        </div>
+        <div class="card">
+            <h3>Gestor de Sitios</h3>
+            <p>App para guardar sitios web importantes, también con Angular y Firebase.</p>
+            <a href="https://sites-manager.onrender.com/" target="_blank">Ver demo</a>
+        </div>
+    </div>
+</section>
+
+<section id="habilidades" class="seccion">
+    <h2>Habilidades</h2>
+    <ul>
+        <li>Angular <progress value="80" max="100"></progress></li>
+        <li>Firebase <progress value="75" max="100"></progress></li>
+        <li>TypeScript <progress value="80" max="100"></progress></li>
+    </ul>
+</section>
+
+<section id="contacto" class="seccion">
+    <h2>Contáctame</h2>
+    <form (submit)="onSubmit($event)">
+        <input type="text" name="user_name" placeholder="Tu nombre" required />
+        <input type="email" name="user_email" placeholder="Tu correo" required />
+        <textarea placeholder="Tu mensaje" name="message" required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+    <div class="social">
+        <a href="https://github.com/ACahuiche" target="_blank">GitHub</a>
+        <a href="https://mx.linkedin.com/in/albertocahuiche" target="_blank">LinkedIn</a>
+    </div>
+</section>
+<div id="recaptcha-container"></div>

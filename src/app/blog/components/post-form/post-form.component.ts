@@ -5,10 +5,11 @@ import { AuthStateService } from '../../../core/states/auth-state.service';
 import { Timestamp } from '@angular/fire/firestore';
 import { BlogService } from '../../services/blog.service';
 import { Router } from '@angular/router';
+import { MainNavComponent } from '../../../core/components/main-nav/main-nav.component';
 
 @Component({
   selector: 'app-post-form',
-  imports: [FormsModule],
+  imports: [FormsModule, MainNavComponent],
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.css'
 })

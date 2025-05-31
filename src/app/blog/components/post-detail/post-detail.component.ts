@@ -3,10 +3,11 @@ import { AuthStateService } from '../../../core/states/auth-state.service';
 import { BlogService } from '../../services/blog.service';
 import { Post } from '../../../models/post.model';
 import { CommonModule } from '@angular/common';
+import { MainNavComponent } from '../../../core/components/main-nav/main-nav.component';
 
 @Component({
   selector: 'app-post-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, MainNavComponent],
   templateUrl: './post-detail.component.html',
   styleUrl: './post-detail.component.css'
 })

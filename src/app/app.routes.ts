@@ -3,8 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'blog',
-        pathMatch: 'full'
+        loadComponent: () => import('./portfolio/portfolio.component')
     },
     {
         path: 'auth',

@@ -5,10 +5,11 @@ import { Post } from '../../../models/post.model';
 import { BlogService } from '../../services/blog.service';
 import { CommonModule } from '@angular/common';
 import { TruncatePipe } from '../../../core/pipes/truncate.pipe';
+import { MainNavComponent } from '../../../core/components/main-nav/main-nav.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule,TruncatePipe, RouterLink],
+  imports: [CommonModule,TruncatePipe, RouterLink, MainNavComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
