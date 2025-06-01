@@ -1,19 +1,30 @@
 <app-main-nav />
 <div class="post-form-container">
-    @if(isTitleError){
-      <small class="text-red-400">Este campo es requerido</small>
-    }
-    <input class="retro-input" type="text" placeholder="Título" [(ngModel)]="title"><br>
-    
-    @if(isBodyPostError) {
-      <small class="text-red-400">Este campo es requerido</small>
-    }
-    <textarea class="retro-textarea" rows="5" cols="40" placeholder="Contenido" [(ngModel)]="postBody"></textarea><br>
-    
-    
-    <div class="button-group">
-      <button class="btnRetro" (click)="saveAsTemplate()">Borrador</button>
-      <button class="btnRetro" (click)="saveAndPublish()">Publicar</button>
-    </div>
+  @if (isTitleError) {
+    <small class="text-red-400">Este campo es requerido</small>
+  }
+
+  <div class="title-input-group">
+    <input class="retro-input" type="text" placeholder="Título" [(ngModel)]="title">
+    <button class="btnRetro" (click)="generatePostWithIA()">Post con IA</button>
   </div>
   
+  @if (isBodyPostError) {
+    <small class="text-red-400">Este campo es requerido</small>
+  }
+
+  @if (isLoading) {
+    <div class="loading-indicator">
+      <span class="spinner"></span> Generando tu post, espere un momento...
+    </div>
+  } @else {
+    <textarea class="retro-textarea" rows="10" cols="70" placeholder="Contenido" [(ngModel)]="postBody"></textarea>
+  }
+
+  <br>
+
+  <div class="button-group">
+    <button class="btnRetro" (click)="saveAsTemplate()">Borrador</button>
+    <button class="btnRetro" (click)="saveAndPublish()">Publicar</button>
+  </div>
+</div>

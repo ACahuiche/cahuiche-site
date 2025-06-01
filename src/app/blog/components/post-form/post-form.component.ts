@@ -6,6 +6,7 @@ import { Timestamp } from '@angular/fire/firestore';
 import { BlogService } from '../../services/blog.service';
 import { Router } from '@angular/router';
 import { MainNavComponent } from '../../../core/components/main-nav/main-nav.component';
+import { PostSuggestService } from '../../../core/IA/post-suggest.service';
 
 @Component({
   selector: 'app-post-form',
@@ -16,19 +17,38 @@ import { MainNavComponent } from '../../../core/components/main-nav/main-nav.com
 export default class PostFormComponent implements OnInit {
   authState = inject(AuthStateService);
   blogService = inject(BlogService);
+  postSuggestService = inject(PostSuggestService);
   router = inject(Router);
 
-  // Se recibe por url en caso de edicion
   idPost = input.required<string>();
   title = '';
   postBody = ''
   infoPost: Post;
   isTitleError = false;
   isBodyPostError = false;
+  isLoading = false;
 
   ngOnInit(): void {
     if (this.idPost()) {
       this.getPost(this.idPost())
+    }
+  }
+
+  async generatePostWithIA() {
+    if (this.title) {
+      this.isLoading = true;
+      try {
+        const improvedTitle = await this.postSuggestService.improvePostTitle(this.title);
+        this.title = improvedTitle;
+  
+        const newPost = await this.postSuggestService.generatePostByTitle(this.title);
+        this.postBody = newPost;
+      } catch (error) {
+        console.error('Error al generar el post con IA:', error);
+        this.postBody = 'Ocurrió un error al generar el contenido 😢';
+      } finally {
+        this.isLoading = false;
+      }
     }
   }
 

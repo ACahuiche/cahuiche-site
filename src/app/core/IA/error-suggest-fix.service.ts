@@ -11,13 +11,13 @@ export class ErrorSuggestFixService {
   private model: GenerativeModel;
 
   constructor() {
-    this.genAI = new GoogleGenerativeAI(environment.geminiApiKey);
+    this.genAI = new GoogleGenerativeAI(environment.ai.geminiApiKey);
     this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
   }
 
   async EvaluateError(error: string): Promise<string> {
     try {
-      const result = await this.model.generateContent(`${environment.prompt}${error}`);
+      const result = await this.model.generateContent(`${environment.ai.promptToFixErrors}${error}`);
       return result.response.text();
     } catch (error) {
       console.error('El solucionador de errores tuvo un error:', error);

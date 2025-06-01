@@ -11,7 +11,7 @@ export class ErrorLoggerService {
 
   private _firestore = inject(Firestore);
   private _authState = inject(AuthStateService);
-  private _errorLogCollection = collection(this._firestore, environment.collectionLoggerName);
+  private _errorLogCollection = collection(this._firestore, environment.firebase.collectionLoggerName);
 
   saveErrorLog(errorLog: ErrorLog) {
     return addDoc(this._errorLogCollection, {
