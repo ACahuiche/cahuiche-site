@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, html {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.logo {
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome {
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.btn-retro {
+  background: #0f0;
+  color: #000;
+  padding: 20px;
+  border: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 0 5px #0f0;
+  margin-bottom: 20px;
+}
+
+.btn-retro:hover {
+  background: #0c0;
+}
+
+.btn-retro-small {
+  background: #0f0;
+  color: #000;
+  padding: 10px;
+  border: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7em;
+  cursor: pointer;
+  box-shadow: 0 0 5px #0f0;
+}
+
+.btn-retro-small:hover {
+  background: #0c0;
+}
+
+.btn-link {
+  font-size: 0.7em;
+  text-decoration: none;
+  color: #000;
+  background: #0ff;
+  padding: 10px;
+  display: inline-block;
+  box-shadow: 0 0 5px #0ff;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.btn-link:hover {
+  background: #0cc;
+}
+
+.retro-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6em;
+}
+
+.retro-table th,
+.retro-table td {
+  border: 2px solid #000;
+  padding: 10px;
+  text-align: left;
+}
+
+.retro-table th {
+  background-color: #000;
+  color: #0f0;
+}
+
+.retro-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.no-posts {
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 30px;
+}

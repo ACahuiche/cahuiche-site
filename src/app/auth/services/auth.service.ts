@@ -46,7 +46,7 @@ export class AuthService extends BaseContext {
       await recaptchaVerifier.verify();
 
       const credential = await createUserWithEmailAndPassword(this._auth, user.email, user.password);
-      await this._userService.registerUserData(credential.user.uid, user.name);
+      await this._userService.registerUserData(credential.user.uid, user.name, user.isAdmin);
       return credential;
     } catch (error) {
       if (error instanceof Error) {

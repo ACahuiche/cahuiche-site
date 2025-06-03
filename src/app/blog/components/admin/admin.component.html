@@ -1,8 +1,6 @@
 <app-main-nav />
 <div class="dashboard-container">
-  <h1 class="welcome">Dashboard</h1>
-
-  <input class="btn-retro" type="button" value="Nuevo Post" (click)="_router.navigate(['/blog/new-post'])">
+  <h1 class="welcome">Panel de administracion</h1>
 
   <h2 class="section-title">Posts</h2>
 
@@ -12,8 +10,10 @@
         <tr>
           <th>Titulo</th>
           <th>Articulo</th>
+          <th>Autor</th>
           <th>Fecha Publicacion</th>
           <th>Fecha ultima modif.</th>
+          <th>Usuario de ultima modif.</th>
           <th>Estado</th>
           <th colspan="3">Acciones</th>
         </tr>
@@ -23,6 +23,7 @@
         <tr>
           <td>{{post.title}}</td>
           <td>{{post.bodyPost | truncate:20 }}</td>
+          <td>{{post.author}}</td>
           <td>
             @if(post.publishedDate) {
               {{post.publishedDate.toDate() | date:'dd/MM/yyyy hh:mm a'}}
@@ -39,12 +40,11 @@
               Sin fecha registrada
             }
           </td>
+          <td>{{post.lastModifyUser ? post.lastModifyUser : 'Sin usuario'}}</td>
           <td> {{ post.isPublic ? 'Publicado' : 'Borrador' }} </td>
           <td><a class="btn-link" routerLink="/blog/edit-post/{{post.id}}">Editar</a></td>
           <td><button class="btn-retro-small" (click)="deletePost(post.id)">Borrar</button></td>
-          <td>
-              <button class="btn-retro-small" (click)="goToPublish(post.id)">{{ post.isPublic ? 'Ver en el blog' : 'Ver preview'}}</button>
-          </td>
+          <td><button class="btn-retro-small" (click)="goToPublish(post.id)">{{post.isPublic ? 'Ver en el blog' : 'Ver preview'}}</button></td>
         </tr>
         }
       </tbody>
@@ -54,3 +54,4 @@
     <p class="no-posts">Aun no hay publicaciones</p>
   }
 </div>
+

@@ -19,7 +19,7 @@ export default class RegisterComponent{
   private _formBuilder = inject(FormBuilder);
   private _auth = inject(AuthService);
   private _router = inject(Router);
-  private user: UserDataAccess = { email : '', password: '', name: ''};
+  private user: UserDataAccess = { email : '', password: '', name: '', isAdmin: false};
 
 
   form = this._formBuilder.group({
@@ -61,7 +61,8 @@ export default class RegisterComponent{
         this.user = {
           email: email,
           password: password,
-          name: name
+          name: name,
+          isAdmin: false
         };
         await this._auth.signUp(this.user);
         toast.success('Usuario creado correctamente');

@@ -5,6 +5,9 @@
     @if(isLogged){
       <span class="welcome-text">Bienvenido {{userName}}</span>
       <button class="btnRetro" (click)="goToDashboard()">Dashboard</button>
+      @if(isAdmin){
+        <button class="btnRetro" (click)="goToAdminPanel()">Admin</button>
+      }
       <button class="btnRetro" (click)="goToBlog()">Vista del Blog</button>
       <button class="btnRetro" (click)="logOut()">Log out</button>
     }

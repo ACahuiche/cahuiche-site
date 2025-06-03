@@ -32,6 +32,15 @@ export class BlogService {
     return collectionData(queryIndividual, { idField: 'id' }) as Observable<Post[]>;
   }
 
+  getPostsForAdmin(): Observable<Post[]> {
+    const uid = this._authState.currentUser?.uid;
+    if (!uid) {
+      return throwError(() => new Error('User not authenticated'));
+    }
+  
+    return collectionData(this._postsCollection, { idField: 'id' }) as Observable<Post[]>;
+  }
+
   //Para la pagina principal
   getAllPosts = toSignal(
     (collectionData(query(
@@ -55,16 +64,18 @@ export class BlogService {
       return throwError(() => new Error('User not authenticated'));
     }
 
-    const userName = await this._userService.getUserName(uid);
+    const userName = await this._userService.getUserData(uid);
 
-    const post:PostSave = {...postForm, author: userName ,userId: uid};
+    const post:PostSave = {...postForm, author: userName.name ,userId: uid};
 
     return addDoc(this._postsCollection, post);
   }
 
-  update(id: string, postForm: PostForm) {
+  async update(id: string, postForm: PostForm) {
+    const uid = this._authState.currentUser?.uid;
+    let userData = await this._userService.getUserData(uid);
     const docRef = doc(this._postsCollection, id);
-    return updateDoc(docRef, {...postForm, lastUpdate: Timestamp.now(), userId:this._authState.currentUser?.uid});
+    return updateDoc(docRef, {...postForm, lastModifyUser: userData.name ,lastUpdate: Timestamp.now()});
   }
 
   delete(id: string) {

@@ -13,6 +13,11 @@ export default [
     },
     {
         canActivate: [privateGuard],
+        path: 'admin',
+        loadComponent: () => import('./components/admin/admin.component')
+    },
+    {
+        canActivate: [privateGuard],
         path: 'new-post',
         loadComponent: () => import('./components/post-form/post-form.component')
     },

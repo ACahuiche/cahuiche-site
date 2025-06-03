@@ -13,6 +13,7 @@ import { ConfigService } from '../../services/config.service';
 })
 export class MainNavComponent implements OnInit, OnDestroy{
   isLogged = false;
+  isAdmin = false;
   userName = '';
   authState = inject(AuthStateService);
   userService = inject(UserService);
@@ -27,8 +28,9 @@ export class MainNavComponent implements OnInit, OnDestroy{
       this.isLogged = !!user;
 
       if(this.isLogged) {
-        this.userService.getUserName(this.authState.currentUser?.uid || '').then(name => {
-          this.userName = name;
+        this.userService.getUserData(this.authState.currentUser?.uid || '').then(userData => {
+          this.userName = userData.name;
+          this.isAdmin = userData.isAdmin;
         });
       }
     });
@@ -46,6 +48,10 @@ export class MainNavComponent implements OnInit, OnDestroy{
 
   goToDashboard() {
     this.router.navigateByUrl('/blog/dashboard');
+  }
+
+  goToAdminPanel() {
+    this.router.navigateByUrl('/blog/admin');
   }
 
   goToBlog() {

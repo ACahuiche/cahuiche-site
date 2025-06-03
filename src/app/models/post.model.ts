@@ -6,6 +6,7 @@ export interface Post{
     bodyPost: string;
     publishedDate: Timestamp;
     lastModifyDate: Timestamp | null;
+    lastModifyUser?: string | null;
     isPublic: boolean | null;
     author?: string;
     userId: string;

@@ -9,16 +9,17 @@ export class UserService {
 
   private usersCollection = collection(this._firestore, 'users');
 
-  async registerUserData(uid: string, name: string): Promise<void> {
+  async registerUserData(uid: string, name: string, isAdmin: boolean): Promise<void> {
     const userRef = doc(this.usersCollection, uid);
     await setDoc(userRef, {
       uid,
       name,
+      isAdmin,
       createdAt: new Date()
     });
   }
 
-  async getUserName(uid:string) {
+  async getUserData(uid:string) {
 
     const userDocRef = doc(this._firestore, 'users', uid);
     const userSnap = await getDoc(userDocRef);
@@ -27,9 +28,9 @@ export class UserService {
       throw new Error('No se encontró el usuario en Firestore');
     }
 
-    const userData = userSnap.data() as { name: string };
+    const userData = userSnap.data() as { name: string, isAdmin: boolean };
 
-    return userData.name;
+    return userData;
 
   }
 }
