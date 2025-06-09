@@ -9,8 +9,14 @@ if (!fs.existsSync(dir)) {
 }
 
 const envConfigFile = `export const environment = {
-  production: false,
+  production: true,
   ai:{
+    models: {
+      gem15pro : 'gemini-1.5-pro-latest',
+      gem15lite : 'gemini-1.5-flash-latest',
+      gem20lite : 'gemini-2.0-flash-lite',
+      gem25lite : 'gemini-2.5-flash'
+    },
     geminiApiKey: '${process.env.GEMINI_API_KEY}',
     promptToFixErrors: 'Arregla el siguiente error que recibo en mi sistema hecho con angular, muestrame la solucion sin mostrarme codigo, el error es el siguiente: ',
     promptImproveTitle: 'Eres un redactor en un blog de tecnologia profesional, el blog esta basado solo en texto y emojis, necesito que mejores el siguiente titulo para captar mas la atencion y hacerlo mas llamativo, como respuesta solo dame el nuevo titulo, no m digas nada mas que no sea el nuevo titulo mejorado, el titulo que vas a mejorar es el siguiente: ',

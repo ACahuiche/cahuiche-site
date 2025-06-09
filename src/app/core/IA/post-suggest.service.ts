@@ -12,7 +12,7 @@ export class PostSuggestService {
 
   constructor() {
     this.genAI = new GoogleGenerativeAI(environment.ai.geminiApiKey);
-    this.model = this.genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
+    this.model = this.genAI.getGenerativeModel({ model: environment.ai.models.gem15pro });
   }
 
   async improvePostTitle(title: string): Promise<string> {
