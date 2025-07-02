@@ -41,6 +41,8 @@ button {
   transition: all 0.2s;
   margin-top: 1rem;
   font-family: 'Press Start 2P', cursive;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 button:hover {

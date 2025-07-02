@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import emailjs from '@emailjs/browser';
 import { toast } from 'ngx-sonner';
 import { environment } from '../../environments/environment';
@@ -14,9 +14,14 @@ import { RecaptchaVerifier, Auth } from '@angular/fire/auth';
 })
 export default class PortfolioComponent {
   private _auth = inject(Auth);
+  private router = inject(Router);
 
   scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  goToCV() {
+    window.open('https://www.self.so/alberto-manuel-cahuiche-castellanogzk2k5','_blank')
   }
   
   async onSubmit(event: Event) {
