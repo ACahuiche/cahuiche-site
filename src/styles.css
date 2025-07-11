@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 body, html {
   font-family: 'Press Start 2P', cursive;
   background-color: #ffffff;
